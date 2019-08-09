@@ -1,0 +1,121 @@
+﻿<Window x:Class="TrackKingAudio.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrackKingAudio"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <ControlTemplate x:Key="ButtonControlTemplate1" TargetType="{x:Type Button}">
+            <Grid Margin="3 2">
+                <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2" RadiusY="10" RadiusX="10">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF861D15" Offset="0"/>
+                            <GradientStop Color="#FF4242CC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="0" />
+                <ContentPresenter x:Name="btnContent" Width="{TemplateBinding MaxWidth}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </ControlTemplate>
+
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.999,1.011" StartPoint="0.028,0.076">
+            <GradientStop Color="#FF9C3838" Offset="0.322"/>
+            <GradientStop Color="#FF1F4889" Offset="0.906"/>
+            <GradientStop Color="#FF6E5569" Offset="0.584"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Column="0" Margin="25,100,5,5">
+            <Button Content="Dashboard" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
+            <Button Margin="0,8" Content="Channels" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
+            <Button Margin="0" Content="Tracks" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
+            <Button Margin="0,8" Content="Report" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
+            <Button Content="Settings" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
+        </WrapPanel>
+
+        <Grid Grid.Column="2" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".25*"/>
+                <RowDefinition Height=".75*"/>
+                <RowDefinition Height=".25*"/>
+            </Grid.RowDefinitions>
+
+            <WrapPanel Grid.Row="0" Orientation="Horizontal" Margin="0,25,0,20">
+                <Label  Content="Channels Monitored" FontSize="18" Foreground="White" Style="{DynamicResource LabelStyle1}" >
+                    <Label.Background>
+                        <LinearGradientBrush EndPoint="0.93,0.952" StartPoint="-0.001,0.072">
+                            <GradientStop Color="#FF8B434A" Offset="0.23"/>
+                            <GradientStop Color="#FF00C0FF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Label.Background>
+                </Label>
+            </WrapPanel>
+
+            <!-- For channel lists-->
+            <WrapPanel Grid.Row="1" Orientation="Vertical" >
+
+                <Button Content="Channel-Alpha" Width="auto" Template="{DynamicResource ButtonControlTemplate1}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
+               
+
+            </WrapPanel>
+
+
+
+            <!--For next Buttons-->
+            <Grid Grid.Row="2" Margin="0,10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".25*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="right" Grid.Column="1" Margin="5,0,0,0">
+                    <Button Content="Previous" x:Name="btnPrevious" Style="{DynamicResource btnNextStyle}" Width="50" Height="40" Foreground="#FF520215">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE3555F" Offset="0"/>
+                                <GradientStop Color="#FF5340E8" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+
+
+                </WrapPanel>
+
+
+                <WrapPanel Orientation="Horizontal" HorizontalAlignment="left" Grid.Column="3" >
+                    <Button HorizontalAlignment="Right" Content="NEXT" x:Name="btnNext" Style="{DynamicResource btnNextStyle}" Width="50" Height="40" Foreground="#FF520215" >
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FFE3555F" Offset="0"/>
+                                <GradientStop Color="#FF5340E8" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </WrapPanel>
+            </Grid>
+
+
+
+        </Grid>
+    </Grid>
+</Window>
