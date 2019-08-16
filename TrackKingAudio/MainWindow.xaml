@@ -226,7 +226,7 @@
 
                         <Button Grid.Row="4" Name="btnBrowseTrack" HorizontalAlignment="Stretch"
                                 VerticalAlignment="Center" FontSize="20px" 
-                                Content="Browse Location" Foreground="#FFCFCFEC" Template="{DynamicResource myMainBtnStyle}">
+                                Content="Browse Location" Foreground="#FFCFCFEC" Template="{DynamicResource myMainBtnStyle}" Click="BtnBrowseTrack_Click">
 
                         </Button>
 
@@ -245,7 +245,7 @@
                         <Button Grid.Column="1" Name="btnAddUpdate" HorizontalAlignment="Left"
                                 VerticalAlignment="Center" FontSize="15px" 
                                 Content="Add/Update" Foreground="#FFCFCFEC" Template="{DynamicResource myMainBtnStyle}"
-                                Margin="5,15,0,0" Background="#FF5B5BE5">
+                                Margin="5,15,0,0" Background="#FF5B5BE5" Click="BtnAddUpdate_Click">
                         </Button>
                     </Grid>
                     
