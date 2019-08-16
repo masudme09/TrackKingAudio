@@ -27,7 +27,10 @@ namespace TrackKingAudio
 
         private void TrackButton_Click(object sender, RoutedEventArgs e)
         {
+            SolidColorBrush btnPressedBrush = new SolidColorBrush(Color.FromArgb(221, 221, 221, 100));
+            btnTrack.Foreground = btnPressedBrush;
             lblMiddle.Content = "Track Admin";
+            lblTypeTitle.Content = "Tracks";
         }
 
         private void TxtCatagory_TextChanged(object sender, TextChangedEventArgs e)

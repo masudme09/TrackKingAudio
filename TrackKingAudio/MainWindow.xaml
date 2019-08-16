@@ -45,7 +45,9 @@
         <WrapPanel Grid.Column="0" Margin="25,100,5,5">
             <Button Content="Dashboard" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
             <Button Margin="0,8" Content="Channels" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
-            <Button Margin="0" Content="Tracks" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18" Click="TrackButton_Click"/>
+            <Button x:Name="btnTrack" Margin="0" Content="Tracks" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18" Click="TrackButton_Click">
+                <!-- Need to insert trigger to change color-->
+            </Button>
             <Button Margin="0,8" Content="Report" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
             <Button Content="Settings" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
         </WrapPanel>
