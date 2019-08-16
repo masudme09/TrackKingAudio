@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrackKingAudio"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="605.455" Width="879.091">
     <Window.Resources>
         <ControlTemplate x:Key="ButtonControlTemplate1" TargetType="{x:Type Button}">
             <Grid Margin="3 2">
@@ -43,11 +43,11 @@
         </Grid.RowDefinitions>
 
         <WrapPanel Grid.Column="0" Margin="25,100,5,5">
-            <Button Content="Dashboard" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
-            <Button Margin="0,8" Content="Channels" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
-            <Button Margin="0" Content="Tracks" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
-            <Button Margin="0,8" Content="Report" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
-            <Button Content="Settings" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
+            <Button Content="Dashboard" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
+            <Button Margin="0,8" Content="Channels" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
+            <Button Margin="0" Content="Tracks" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18" Click="TrackButton_Click"/>
+            <Button Margin="0,8" Content="Report" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
+            <Button Content="Settings" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
         </WrapPanel>
 
         <Grid Grid.Column="2" >
@@ -73,7 +73,7 @@
             <WrapPanel Grid.Row="1" Orientation="Vertical" >
 
                 <Button Content="Channel-Alpha" Width="auto" Template="{DynamicResource ButtonControlTemplate1}" Height="40" Foreground="#FFF5E3E3" FontSize="18"/>
-               
+
 
             </WrapPanel>
 
@@ -116,6 +116,139 @@
 
 
 
+        </Grid>
+        <!-- Middle part for visualization-->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".25*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height=".25*"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Name="lblMiddle" Content="" Foreground="White" 
+                   FontSize="25px" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width=".5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.Background>
+                        <SolidColorBrush Color="#FF796C82" Opacity="0.25"/>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".1*"/>
+                        <RowDefinition Height=".9*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Name="lblTypeTitle" Content="Tracks" Foreground="White"
+                           FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,0"
+                           VerticalAlignment="Top"/>
+                    <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Row="1">
+                        <Label Name="lblItem_1" Content="Dano Milk" Foreground="White"
+                           FontSize="15px" Visibility="Hidden"/>
+                        <Label Name="lblItem_2" Content="Horlicks Ads" Foreground="White"
+                           FontSize="15px" Visibility="Hidden"/>
+                        <Label Name="lblItem_3" Content="Real State" Foreground="White"
+                           FontSize="15px" Visibility="Hidden"/>
+                        <Label Name="lblItem_4" Content="Knor Soap" Foreground="White"
+                           FontSize="15px" Visibility="Hidden"/>
+                        <Label Name="lblItem_5" Content="" Foreground="White"
+                           FontSize="15px" Visibility="Hidden"/>
+                        <Label Name="lblItem_6" Content="" Foreground="White"
+                           FontSize="15px" Visibility="Hidden"/>
+                        <Label Name="lblItem_7" Content="" Foreground="White"
+                           FontSize="15px" Visibility="Hidden"/>
+                        <Label Name="lblItem_8" Content="" Foreground="White"
+                           FontSize="15px" Visibility="Hidden"/>
+                        <Label Name="lblItem_9" Content="" Foreground="White"
+                           FontSize="15px" Visibility="Hidden"/>
+                        <Label Name="lblItem_10" Content="" Foreground="White"
+                           FontSize="15px" Visibility="Hidden"/>
+                    </WrapPanel>
+                </Grid>
+
+                <!--Setup Area -->
+                <Grid Grid.Column="1" Background="#FF894B55">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height=".1*"/>
+                        <RowDefinition Height=".8*"/>
+                        <RowDefinition Height=".2*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Name="lblSetupTitle" Content="Setup" Foreground="White"
+                           FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,0"
+                           VerticalAlignment="Top"/>
+                    <!--Setup elements-->
+                    <Grid Grid.Row="1" Margin="10,10,5,0">
+                        <Grid.Background>
+                            <SolidColorBrush Color="#FFB3B3C4" Opacity="0.05"/>
+                        </Grid.Background>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="61*"/>
+                            <RowDefinition Height="60*"/>
+                            <RowDefinition Height="61*"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="61*"/>
+                        </Grid.RowDefinitions>
+                        <TextBox x:Name="txtName" Grid.Row="0" Text="Track Name" 
+                                 FontSize="18px" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                 Foreground="White" TextAlignment="Center" >
+                            <TextBox.Background>
+                                <SolidColorBrush Color="#FFA4A4CA" Opacity="0.5"/>
+                            </TextBox.Background>
+
+                        </TextBox>
+
+                        <TextBox x:Name="txtCatagory" Grid.Row="1" Text="Category" 
+                                 FontSize="18px" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                 Foreground="White" TextAlignment="Center"  >
+                            <TextBox.Background>
+                                <SolidColorBrush Color="#FFA4A4CA" Opacity="0.5"/>
+                            </TextBox.Background>
+                        </TextBox>
+
+                        <TextBox x:Name="txtProduct" Grid.Row="2" Text="Product" 
+                                 FontSize="18px" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                 Foreground="White" TextAlignment="Center"  >
+                            <TextBox.Background>
+                                <SolidColorBrush Color="#FFA4A4CA" Opacity="0.5"/>
+                            </TextBox.Background>
+                        </TextBox>
+
+                        <TextBox x:Name="txtBrand" Grid.Row="3" Text="Brand" 
+                                 FontSize="18px" VerticalAlignment="Center" HorizontalAlignment="Stretch"
+                                 Foreground="White" TextAlignment="Center"  >
+                            <TextBox.Background>
+                                <SolidColorBrush Color="#FFA4A4CA" Opacity="0.5"/>
+                            </TextBox.Background>
+                        </TextBox>
+
+                        <Button Grid.Row="4" Name="btnBrowseTrack" HorizontalAlignment="Stretch"
+                                VerticalAlignment="Center" FontSize="20px" 
+                                Content="Browse Location" Foreground="#FFCFCFEC" Template="{DynamicResource myMainBtnStyle}">
+
+                        </Button>
+
+
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Name="btnRemove" HorizontalAlignment="Right"
+                                VerticalAlignment="Center" FontSize="15px" 
+                                Content="Remove" Foreground="#FFCFCFEC" Template="{DynamicResource myMainBtnStyle}"
+                                Margin="5,15,0,0">
+                        </Button>
+                        <Button Grid.Column="1" Name="btnAddUpdate" HorizontalAlignment="Left"
+                                VerticalAlignment="Center" FontSize="15px" 
+                                Content="Add/Update" Foreground="#FFCFCFEC" Template="{DynamicResource myMainBtnStyle}"
+                                Margin="5,15,0,0" Background="#FF5B5BE5">
+                        </Button>
+                    </Grid>
+                    
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

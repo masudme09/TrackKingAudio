@@ -24,5 +24,15 @@ namespace TrackKingAudio
         {
             InitializeComponent();
         }
+
+        private void TrackButton_Click(object sender, RoutedEventArgs e)
+        {
+            lblMiddle.Content = "Track Admin";
+        }
+
+        private void TxtCatagory_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
