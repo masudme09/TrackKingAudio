@@ -27,7 +27,12 @@ namespace TrackKingAudio
         public static string audiolocation = "";
         public MainWindow()
         {
+            StartWindow stWindow = new StartWindow();
+            
             InitializeComponent();
+            stWindow.Show();
+            stWindow.Activate();
+            this.Hide();
         }
 
         private void TrackButton_Click(object sender, RoutedEventArgs e)
@@ -177,6 +182,7 @@ namespace TrackKingAudio
                     PathString = "";
                 }
                 doc.Save(installationPath + "\\TrackXml\\tracInfo.xml");
+                System.Windows.Forms.MessageBox.Show("Added/Updated");
             }
 
 

@@ -1,0 +1,106 @@
+﻿<Window x:Class="TrackKingAudio.StartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrackKingAudio"
+        mc:Ignorable="d"
+        Title="StartWindow" Height="605.455" Width="879.091">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="ButtonControlTemplate1" TargetType="{x:Type Button}">
+            <Grid Margin="3 2">
+                <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2" RadiusY="10" RadiusX="10">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF861D15" Offset="0"/>
+                            <GradientStop Color="#FF4242CC" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+
+                <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="0" />
+                <ContentPresenter x:Name="btnContent" Width="{TemplateBinding MaxWidth}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="StartBtn" TargetType="{x:Type Button}">
+            <Grid>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition From="Normal" GeneratedDuration="0" To="MouseOver">
+                                <Storyboard>
+                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="startEclipse">
+                                        <EasingColorKeyFrame KeyTime="0" Value="#FFBF8585"/>
+                                    </ColorAnimationUsingKeyFrames>
+                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="startRectagle">
+                                        <EasingColorKeyFrame KeyTime="0" Value="#FF661010"/>
+                                    </ColorAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </VisualTransition>
+                            <VisualTransition From="MouseOver" GeneratedDuration="0" To="Normal">
+                                <Storyboard>
+                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="startEclipse">
+                                        <EasingColorKeyFrame KeyTime="0" Value="#FF6F91C9"/>
+                                    </ColorAnimationUsingKeyFrames>
+                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="startEclipse">
+                                        <EasingColorKeyFrame KeyTime="0" Value="#FF8D4141"/>
+                                    </ColorAnimationUsingKeyFrames>
+                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="startRectagle">
+                                        <EasingColorKeyFrame KeyTime="0" Value="#FF081325"/>
+                                    </ColorAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </VisualTransition>
+                        </VisualStateGroup.Transitions>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Ellipse x:Name="startEclipse" Width="150px"
+                         Height="130px" >
+                    <Ellipse.Fill>
+                        <LinearGradientBrush EndPoint="0.909,0.664" StartPoint="0.091,0.336">
+                            <GradientStop Color="#FF7E2121" Offset="0.31"/>
+                            <GradientStop Color="#FF153870" Offset="0.903"/>
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Path x:Name="startRectagle" Width="61.922" Height="64.122"
+                    HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Margin="37.863,32.772,50.215,33.106" Data="M22.336107,40.666477 L61.922,0 61.922,64.122 0,64.122 z" Stretch="Fill">
+                    <Path.Fill>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FFFB1313" Offset="0.464"/>
+                            <GradientStop Color="#FF14499E" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                    <Path.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-43.824"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Path.RenderTransform>
+                </Path>
+            </Grid>
+        </ControlTemplate>
+
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.999,1.011" StartPoint="0.028,0.076">
+            <GradientStop Color="#FF9C3838" Offset="0.322"/>
+            <GradientStop Color="#FF1F4889" Offset="0.906"/>
+            <GradientStop Color="#FF6E5569" Offset="0.584"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width=".5*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btnStartButton" Content="Button" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Template="{DynamicResource StartBtn}"
+                Click="BtnStartButton_Click"/>
+
+
+    </Grid>
+</Window>
