@@ -145,9 +145,9 @@
                     <Label Grid.Row="0" Name="lblTypeTitle" Content="Tracks" Foreground="White"
                            FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,0"
                            VerticalAlignment="Top"/>
-                    <WrapPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Row="1">
+                    <WrapPanel Name="WrapItems" Orientation="Vertical" HorizontalAlignment="Center" Grid.Row="1">
                         <Label Name="lblItem_1" Content="Dano Milk" Foreground="White"
-                           FontSize="15px" Visibility="Hidden"/>
+                           FontSize="15px" Visibility="Visible"/>
                         <Label Name="lblItem_2" Content="Horlicks Ads" Foreground="White"
                            FontSize="15px" Visibility="Hidden"/>
                         <Label Name="lblItem_3" Content="Real State" Foreground="White"

@@ -56,9 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="StartWindow.xaml.cs">
-      <DependentUpon>StartWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Track.cs" />
     <Page Include="btnNextStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,10 +82,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="myMainBtnStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="StartWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

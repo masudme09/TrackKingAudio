@@ -25,22 +25,32 @@ namespace TrackKingAudio
     public partial class MainWindow : Window
     {
         public static string audiolocation = "";
+        private bool loaded = false;//this variable is to check trackxml is loaded once or not
+        public List<Track> Tracks = new List<Track>();//it will have all the list of tracks on xml and newly added
+
         public MainWindow()
         {
-            StartWindow stWindow = new StartWindow();
-            
-            InitializeComponent();
-            stWindow.Show();
-            stWindow.Activate();
-            this.Hide();
+
+            InitializeComponent();          
+            //Loading tracks from xml
+            if (loaded == false)
+            {
+                //getting installation directory to save xml
+                string installationPath = AppDomain.CurrentDomain.BaseDirectory;
+
+                readTrackInfoFromXml(installationPath + "\\TrackXml\\tracInfo.xml");
+            }
+
         }
 
         private void TrackButton_Click(object sender, RoutedEventArgs e)
         {
+           
             SolidColorBrush btnPressedBrush = new SolidColorBrush(Color.FromArgb(221, 221, 221, 100));
             btnTrack.Foreground = btnPressedBrush;
             lblMiddle.Content = "Track Admin";
             lblTypeTitle.Content = "Tracks";
+            viewTrackListToWindowFromTracks(0, 1);
         }
 
         private void TxtCatagory_TextChanged(object sender, TextChangedEventArgs e)
@@ -213,6 +223,106 @@ namespace TrackKingAudio
             }
             else
                 return "";
+        }
+
+        /// <summary>
+        /// This method will read xml and generate list of track with all the attributes
+        /// </summary>
+        /// <param name="xmlPath"></param>
+        public void readTrackInfoFromXml(string xmlPath)
+        {
+            XmlDocument doc = new XmlDocument();
+            //checking file exists or not
+            if (File.Exists(xmlPath))
+            {
+                doc.Load(xmlPath);
+                loaded = true;//Setting this value to ensure that tracks are loaded from xml once
+
+                XmlNode rootNode = doc.FirstChild.NextSibling;//Trackinfo node
+
+                XmlNodeList xmlTrackNodes = doc.GetElementsByTagName("Track");
+                
+                foreach(XmlNode nd in xmlTrackNodes)
+                {
+                    XmlAttributeCollection trackAtbs = nd.Attributes;
+                    Track track = new Track();
+
+                    foreach(XmlAttribute atb in trackAtbs) //Getting tracks id and Name
+                    {
+                        if(atb.Name=="id")
+                        {
+                            track.id= Convert.ToInt32(atb.Value);
+                        }
+                        else if(atb.Name=="Name")
+                        {
+                            track.Name= atb.Value;
+                        }
+                    }
+
+                    XmlNodeList trackChildNodes = nd.ChildNodes;
+
+                    foreach(XmlNode trChNd in trackChildNodes)//Getting Category, Product, Brand & AudioLocation
+                    {
+                        if(trChNd.Name== "Category")
+                        {
+                            track.Category = trChNd.InnerText;
+                        }
+                        else if(trChNd.Name == "Product")
+                        {
+                            track.Product = trChNd.InnerText;
+                        }
+                        else if (trChNd.Name == "Brand")
+                        {
+                            track.Brand= trChNd.InnerText;
+                        }
+                        else if (trChNd.Name == "AudioLocation")
+                        {
+                            track.AudioLoc= trChNd.InnerText;
+                        }
+                    }
+
+                    //Adding to traclist
+                    Tracks.Add(track);
+                }
+
+
+
+            }
+            
+        }
+
+        /// <summary>
+        /// This method will insert tracks to the UI form TrackList=Tracks
+        /// </summary>
+        /// <param name="startIndex"></param>
+        /// <param name="endIndex"></param>
+        public void viewTrackListToWindowFromTracks(int startIndex, int endIndex)
+        {
+            //if startindex is smaller than track count then clear all track level first
+            if (startIndex < Tracks.Count)
+            {
+
+                UIElementCollection trackListVisualUI = WrapItems.Children;
+                foreach (System.Windows.Controls.Label lbl in trackListVisualUI)
+                {
+                    lbl.Content = "";
+                }
+
+
+                int count = 1;
+                for (int i = startIndex; i <= endIndex; i++)
+                {
+                    if (i < Tracks.Count)
+                    {
+                        //Finding by Name
+                        System.Windows.Controls.Label lbl = this.FindName("lblItem_"+count) as System.Windows.Controls.Label;
+                        lbl.Content = Tracks[i].Name;
+                        lbl.Visibility = Visibility.Visible;
+                        count++;
+                    }
+                    
+                }
+            }
         }
     }
 }
