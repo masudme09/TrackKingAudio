@@ -43,13 +43,14 @@
         </Grid.RowDefinitions>
 
         <WrapPanel Grid.Column="0" Margin="25,100,5,5">
-            <Button Content="Dashboard" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
-            <Button Margin="0,8" Content="Channels" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
+            <Button x:Name="btnDashboard" Content="Dashboard" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
+            <Button x:Name="btnChannels" Margin="0,8" Content="Channels" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"
+                    Click="BtnChannels_Click"/>
             <Button x:Name="btnTrack" Margin="0" Content="Tracks" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18" Click="TrackButton_Click">
                 <!-- Need to insert trigger to change color-->
             </Button>
-            <Button Margin="0,8" Content="Report" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
-            <Button Content="Settings" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
+            <Button x:Name="btnReport" Margin="0,8" Content="Report" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
+            <Button x:Name="btnSettings" Content="Settings" Width="auto" Template="{DynamicResource myMainBtnStyle}" Height="40" Foreground="#FFCFCFEC" FontSize="18"/>
         </WrapPanel>
 
         <Grid Grid.Column="2" >
@@ -119,12 +120,12 @@
 
 
         </Grid>
-        <!-- Middle part for visualization-->
-        <Grid Grid.Column="1">
+        <!-- Middle part for visualization for Tracks-->
+        <Grid Grid.Column="1" Name="middleContentGrid" Visibility="Visible">
             <Grid.RowDefinitions>
-                <RowDefinition Height=".25*"/>
+                <RowDefinition Height=".20*"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height=".25*"/>
+                <RowDefinition Height=".20*"/>
             </Grid.RowDefinitions>
 
             <Label Grid.Row="0" Name="lblMiddle" Content="" Foreground="White" 
@@ -141,72 +142,92 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height=".1*"/>
                         <RowDefinition Height=".9*"/>
+                        <RowDefinition Height=".1*"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Name="lblTypeTitle" Content="Tracks" Foreground="White"
                            FontSize="20px" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,0"
                            VerticalAlignment="Top"/>
                     <WrapPanel Name="WrapItems" Orientation="Vertical" HorizontalAlignment="Center" Grid.Row="1">
                         <Label Name="lblItem_1" Content="Dano Milk" Foreground="White"
-                           FontSize="15px" FontFamily="Segoe Print" Visibility="Hidden" Margin="0,2,0,0">
+                           FontSize="15px" FontFamily="Segoe Print" Visibility="Hidden" Margin="0,2,0,0" MouseDown="LblItem_1_MouseDown">
                         <Label.Background>
                           <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
                         </Label.Background>
                       </Label>
                       <Label Name="lblItem_2" Content="Horlicks Ads" Foreground="White"
-                                     FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                                     FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0" MouseDown="LblItem_1_MouseDown">
                         <Label.Background>
                           <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
                         </Label.Background>
                       </Label>
                       <Label Name="lblItem_3" Content="Real State" Foreground="White"
-                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0" MouseDown="LblItem_1_MouseDown">
                         <Label.Background>
                           <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
                         </Label.Background>
                       </Label>
                       <Label Name="lblItem_4" Content="Knor Soap" Foreground="White"
-                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0" MouseDown="LblItem_1_MouseDown">
                         <Label.Background>
                           <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
                         </Label.Background>
                       </Label>
                       <Label Name="lblItem_5" Content="" Foreground="White"
-                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0" MouseDown="LblItem_1_MouseDown">
                         <Label.Background>
                           <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
                         </Label.Background>
                       </Label>
                       <Label Name="lblItem_6" Content="" Foreground="White"
-                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0" MouseDown="LblItem_1_MouseDown">
                         <Label.Background>
                           <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
                         </Label.Background>
                       </Label>
                       <Label Name="lblItem_7" Content="" Foreground="White"
-                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0" MouseDown="LblItem_1_MouseDown">
                         <Label.Background>
                           <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
                         </Label.Background>
                       </Label>
                       <Label Name="lblItem_8" Content="" Foreground="White"
-                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0" MouseDown="LblItem_1_MouseDown">
                         <Label.Background>
                           <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
                         </Label.Background>
                       </Label>
                       <Label Name="lblItem_9" Content="" Foreground="White"
-                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0" MouseDown="LblItem_1_MouseDown">
                         <Label.Background>
                           <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
                         </Label.Background>
                       </Label>
                       <Label Name="lblItem_10" Content="" Foreground="White"
-                         FontSize="15px" Visibility="Hidden" FontFamily="Segoe Print" Margin="0,2,0,0" >
+                         FontSize="15px" Visibility="Hidden" FontFamily="Segoe Print" Margin="0,2,0,0" MouseDown="LblItem_1_MouseDown">
                         <Label.Background>
                           <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
                         </Label.Background>
                       </Label>
                     </WrapPanel>
+                    
+                    <!--This grid holds next and previos button for tracks-->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Name="btnTrackPrevious" HorizontalAlignment="Right"
+                                VerticalAlignment="Center" FontSize="15px" 
+                                Content="Previous" Foreground="#FFCFCFEC" Template="{DynamicResource myMainBtnStyle}"
+                                Margin="0,0,0,0" Visibility="Visible" Click="BtnTrackPrevious_Click">
+                        </Button>
+                        <Button Grid.Column="1" Name="btnTrackNext" HorizontalAlignment="Left"
+                                VerticalAlignment="Center" FontSize="15px" 
+                                Content="Next" Foreground="#FFCFCFEC" Template="{DynamicResource myMainBtnStyle}"
+                                Margin="5,0,0,0" Background="#FF5B5BE5" Visibility="Visible" Click="BtnTrackNext_Click" >
+                        </Button>
+                    </Grid>
+
                 </Grid>
 
                 <!--Setup Area -->
@@ -280,7 +301,7 @@
                         <Button Grid.Column="0" Name="btnRemove" HorizontalAlignment="Right"
                                 VerticalAlignment="Center" FontSize="15px" 
                                 Content="Remove" Foreground="#FFCFCFEC" Template="{DynamicResource myMainBtnStyle}"
-                                Margin="5,15,0,0">
+                                Margin="5,15,0,0" Click="BtnRemove_Click">
                         </Button>
                         <Button Grid.Column="1" Name="btnAddUpdate" HorizontalAlignment="Left"
                                 VerticalAlignment="Center" FontSize="15px" 
@@ -291,6 +312,10 @@
                     
                 </Grid>
             </Grid>
+        </Grid>
+        <Grid x:Name="middleContentGridForChannels" Visibility="Hidden" Grid.Column="1">
+            <Label Content="Channel Area" HorizontalAlignment="Center"
+                   VerticalAlignment="Center" FontSize="50px"/>
         </Grid>
     </Grid>
 </Window>

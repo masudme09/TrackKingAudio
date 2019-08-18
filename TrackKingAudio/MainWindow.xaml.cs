@@ -45,12 +45,13 @@ namespace TrackKingAudio
 
         private void TrackButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            middleContentGridForChannels.Visibility = Visibility.Hidden;
+            middleContentGrid.Visibility = Visibility.Visible; //Middle grid is visible now
             SolidColorBrush btnPressedBrush = new SolidColorBrush(Color.FromArgb(221, 221, 221, 100));
             btnTrack.Foreground = btnPressedBrush;
             lblMiddle.Content = "Track Admin";
             lblTypeTitle.Content = "Tracks";
-            viewTrackListToWindowFromTracks(0, endIndex:(Tracks.Count<=10?Tracks.Count:10));
+            viewTrackListToWindowFromTracks(0, endIndex:(Tracks.Count<=10?Tracks.Count-1:9));
         }
 
         private void TxtCatagory_TextChanged(object sender, TextChangedEventArgs e)
@@ -97,11 +98,11 @@ namespace TrackKingAudio
                     int endIndex = 0;
                     if (Tracks.Count <= 10)
                     {
-                        endIndex = Tracks.Count;
+                        endIndex = Tracks.Count-1;
                     }
                     else
                     {
-                        endIndex = 10;
+                        endIndex = 9;
                     }
                     viewTrackListToWindowFromTracks(startIndex, endIndex);
                 }
@@ -193,6 +194,14 @@ namespace TrackKingAudio
                                 nd.InnerText = audioLoc;
                             }
                         }
+
+                        //To update Track list node
+                        Track existingTrack = Tracks.Find(x => x.Name == trackName);
+                        existingTrack.Category = category;
+                        existingTrack.Product = product;
+                        existingTrack.Brand = brand;
+                        existingTrack.AudioLoc = audioLoc;
+
                     }
                     else //If no existing node, then need to create one
                     {
@@ -332,7 +341,7 @@ namespace TrackKingAudio
         public void viewTrackListToWindowFromTracks(int startIndex, int endIndex)
         {
             //if startindex is smaller than track count then clear all track level first
-            if (startIndex < Tracks.Count)
+            if (startIndex <=Tracks.Count)
             {
 
                 UIElementCollection trackListVisualUI = WrapItems.Children;
@@ -343,7 +352,7 @@ namespace TrackKingAudio
 
 
                 int count = 1;
-                for (int i = startIndex; i <endIndex; i++)
+                for (int i = startIndex; i <=endIndex; i++)
                 {
                     if (i < Tracks.Count)
                     {
@@ -367,6 +376,175 @@ namespace TrackKingAudio
             txtBrand.Text = "Brand";
             txtProduct.Text = "Product";
             audiolocation = "";
+        }
+
+        /// <summary>
+        /// This handler will be used for all label item controls
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void LblItem_1_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                SolidColorBrush btnPressedBrush = new SolidColorBrush(Color.FromArgb(255, 0, 0, 255));
+
+                System.Windows.Controls.Label srcLabel = e.Source as System.Windows.Controls.Label; //to know which label call this handler
+                SolidColorBrush btnUpBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+                UIElementCollection trackListVisualUI = WrapItems.Children;
+
+                foreach (System.Windows.Controls.Label lbl in trackListVisualUI)//Setting all the items to default brush
+                {
+
+                    lbl.Foreground = btnUpBrush;
+
+
+                }
+                srcLabel.Foreground = btnPressedBrush;
+
+                //Getting info about source label track from xml and set that as setup content
+                string srcLabelTrackName = srcLabel.Content.ToString();
+                Track tr = Tracks.Find(x => x.Name.Equals(srcLabelTrackName));
+
+                //Setting the track property to text boxes
+                txtName.Text = tr.Name;
+                txtBrand.Text = tr.Brand;
+                txtCatagory.Text = tr.Category;
+                txtProduct.Text = tr.Product;
+                audiolocation = tr.AudioLoc;
+            }
+            catch(Exception error)
+            {
+                //Write error log here
+            }
+        }
+
+        private void BtnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            try
+                {
+                string trackName = txtName.Text;
+
+                //Now get it form track list and xml and remove it
+                Track tr = Tracks.Find(x => x.Name.Equals(trackName));
+                Tracks.Remove(tr);//removing from list
+
+                //getting installation directory to save xml
+                string installationPath = AppDomain.CurrentDomain.BaseDirectory;
+                if (File.Exists(installationPath + "\\TrackXml\\tracInfo.xml"))
+                {
+                    XmlNode rmTrack = null;
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(installationPath + "\\TrackXml\\tracInfo.xml");
+                    XmlNode rootNode = doc.FirstChild.NextSibling;
+
+                    XmlNodeList xmlTracks = rootNode.ChildNodes;
+
+                    foreach (XmlNode nd in xmlTracks)
+                    {
+                        XmlAttributeCollection ndAtbCol = nd.Attributes;
+
+                        foreach (XmlAttribute atb in ndAtbCol)
+                        {
+                            if (atb.Name == "Name" && atb.Value == trackName)
+                            {
+                                rmTrack = nd;
+                                break;
+                            }
+                        }
+
+                        if (rmTrack != null)
+                        {
+                            break;
+                        }
+
+                    }
+
+                    rootNode.RemoveChild(rmTrack);
+
+                    doc.Save(installationPath + "\\TrackXml\\tracInfo.xml");
+                }
+
+                //Now need to update UI
+                int lastIndex = Tracks.Count < 10 ? Tracks.Count : 10;
+                viewTrackListToWindowFromTracks(0, lastIndex);
+
+                //Setting setup window to default
+                intializingItemField();
+            }
+            catch(Exception err)
+            {
+                //Log write here
+            }
+        }
+
+        private void BtnChannels_Click(object sender, RoutedEventArgs e)
+        {
+            middleContentGrid.Visibility = Visibility.Hidden;
+            middleContentGridForChannels.Visibility = Visibility.Visible;
+        }
+
+        private void BtnTrackPrevious_Click(object sender, RoutedEventArgs e)
+        {
+            //Find first track showing
+            //First track index must be greater than 9
+            //First track can not be empty
+            //Previous=firsttrackCurrent-1 to firsttrackCurrent-10
+            string firstTrackShowing = lblItem_1.Content.ToString();
+
+            if(firstTrackShowing!="")
+            {
+                //getting know the index of last track on track list
+                int indexOfFirstTrack = Tracks.FindIndex(x => x.Name == firstTrackShowing);
+                int startingIndexPrev;
+                int endIndexPrev;
+
+                if(indexOfFirstTrack>9)
+                {
+                    startingIndexPrev = indexOfFirstTrack - 10;
+                    endIndexPrev = indexOfFirstTrack - 1;
+                    viewTrackListToWindowFromTracks(startingIndexPrev, endIndexPrev);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("No more previous track");
+                }
+            }
+
+
+        }
+
+        private void BtnTrackNext_Click(object sender, RoutedEventArgs e)
+        {
+            //if we have tracks other than what now showning on lblitem_10 then this button will work
+            //We have to findout what is on lblItem_10 and findout index of that fro Tracks (list)
+            //lblItem10 may be empty. if so then we have disable next button
+
+            string lastTrackShowing = lblItem_10.Content.ToString();
+            if(lastTrackShowing!="")
+            {
+                //getting know the index of last track on track list
+                int indexOfLastTrack = Tracks.FindIndex(x=> x.Name==lastTrackShowing);
+                int startingIndexNext;
+                int endIndexNext;
+
+                //Now check there are more tracks or not
+                if (Tracks.Count>indexOfLastTrack+1)
+                {
+                    startingIndexNext = indexOfLastTrack + 1;
+                    endIndexNext = startingIndexNext + 9;
+                    viewTrackListToWindowFromTracks(startingIndexNext, endIndexNext);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("No more tracks to show");
+                }
+
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("No more tracks to show");
+            }
         }
     }
 }
