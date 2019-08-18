@@ -147,25 +147,65 @@
                            VerticalAlignment="Top"/>
                     <WrapPanel Name="WrapItems" Orientation="Vertical" HorizontalAlignment="Center" Grid.Row="1">
                         <Label Name="lblItem_1" Content="Dano Milk" Foreground="White"
-                           FontSize="15px" Visibility="Visible"/>
-                        <Label Name="lblItem_2" Content="Horlicks Ads" Foreground="White"
-                           FontSize="15px" Visibility="Hidden"/>
-                        <Label Name="lblItem_3" Content="Real State" Foreground="White"
-                           FontSize="15px" Visibility="Hidden"/>
-                        <Label Name="lblItem_4" Content="Knor Soap" Foreground="White"
-                           FontSize="15px" Visibility="Hidden"/>
-                        <Label Name="lblItem_5" Content="" Foreground="White"
-                           FontSize="15px" Visibility="Hidden"/>
-                        <Label Name="lblItem_6" Content="" Foreground="White"
-                           FontSize="15px" Visibility="Hidden"/>
-                        <Label Name="lblItem_7" Content="" Foreground="White"
-                           FontSize="15px" Visibility="Hidden"/>
-                        <Label Name="lblItem_8" Content="" Foreground="White"
-                           FontSize="15px" Visibility="Hidden"/>
-                        <Label Name="lblItem_9" Content="" Foreground="White"
-                           FontSize="15px" Visibility="Hidden"/>
-                        <Label Name="lblItem_10" Content="" Foreground="White"
-                           FontSize="15px" Visibility="Hidden"/>
+                           FontSize="15px" FontFamily="Segoe Print" Visibility="Hidden" Margin="0,2,0,0">
+                        <Label.Background>
+                          <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
+                        </Label.Background>
+                      </Label>
+                      <Label Name="lblItem_2" Content="Horlicks Ads" Foreground="White"
+                                     FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                        <Label.Background>
+                          <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
+                        </Label.Background>
+                      </Label>
+                      <Label Name="lblItem_3" Content="Real State" Foreground="White"
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                        <Label.Background>
+                          <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
+                        </Label.Background>
+                      </Label>
+                      <Label Name="lblItem_4" Content="Knor Soap" Foreground="White"
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                        <Label.Background>
+                          <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
+                        </Label.Background>
+                      </Label>
+                      <Label Name="lblItem_5" Content="" Foreground="White"
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                        <Label.Background>
+                          <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
+                        </Label.Background>
+                      </Label>
+                      <Label Name="lblItem_6" Content="" Foreground="White"
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                        <Label.Background>
+                          <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
+                        </Label.Background>
+                      </Label>
+                      <Label Name="lblItem_7" Content="" Foreground="White"
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                        <Label.Background>
+                          <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
+                        </Label.Background>
+                      </Label>
+                      <Label Name="lblItem_8" Content="" Foreground="White"
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                        <Label.Background>
+                          <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
+                        </Label.Background>
+                      </Label>
+                      <Label Name="lblItem_9" Content="" Foreground="White"
+                         FontSize="15px" Visibility="Hidden"  FontFamily="Segoe Print" Margin="0,2,0,0">
+                        <Label.Background>
+                          <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
+                        </Label.Background>
+                      </Label>
+                      <Label Name="lblItem_10" Content="" Foreground="White"
+                         FontSize="15px" Visibility="Hidden" FontFamily="Segoe Print" Margin="0,2,0,0" >
+                        <Label.Background>
+                          <SolidColorBrush Color="#FFC65F5F" Opacity="0.25"/>
+                        </Label.Background>
+                      </Label>
                     </WrapPanel>
                 </Grid>
 

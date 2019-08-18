@@ -50,7 +50,7 @@ namespace TrackKingAudio
             btnTrack.Foreground = btnPressedBrush;
             lblMiddle.Content = "Track Admin";
             lblTypeTitle.Content = "Tracks";
-            viewTrackListToWindowFromTracks(0, 1);
+            viewTrackListToWindowFromTracks(0, endIndex:(Tracks.Count<=10?Tracks.Count:10));
         }
 
         private void TxtCatagory_TextChanged(object sender, TextChangedEventArgs e)
@@ -66,18 +66,50 @@ namespace TrackKingAudio
         /// <param name="e"></param>
         private void BtnAddUpdate_Click(object sender, RoutedEventArgs e)
         {
-            string trackName = txtName.Text;
-            string category = txtCatagory.Text;
-            string product = txtProduct.Text;
-            string brand = txtBrand.Text;
+            string trackName;
+            string category;
+            string product;
+            string brand;
+
             //string audiolocation = audioBrowseDialog();
-            if(audiolocation=="")
+            if (audiolocation=="")
             {
                 System.Windows.Forms.MessageBox.Show("Select audio file");
-            }else
+            }
+            else
             {
+                Track track = new Track();
+
+                track.id = Tracks.Count + 1;
+                track.Name= trackName = txtName.Text;
+                track.Category= category = txtCatagory.Text;
+                track.Product= product = txtProduct.Text;
+                track.Brand= brand = txtBrand.Text;
+               
+                //if the current name track already exists then track will not be added to tracks
+                bool trackExists = Tracks.Any(tr => tr.Name == track.Name);
+                if (trackExists == false)
+                {
+                    Tracks.Add(track);
+
+                    //View it on UI
+                    int startIndex = 0;
+                    int endIndex = 0;
+                    if (Tracks.Count <= 10)
+                    {
+                        endIndex = Tracks.Count;
+                    }
+                    else
+                    {
+                        endIndex = 10;
+                    }
+                    viewTrackListToWindowFromTracks(startIndex, endIndex);
+                }
+
                 createAddUpdateXml(trackName, category, product, brand, audiolocation);
             }
+            
+
             
         }
 
@@ -193,6 +225,7 @@ namespace TrackKingAudio
                 }
                 doc.Save(installationPath + "\\TrackXml\\tracInfo.xml");
                 System.Windows.Forms.MessageBox.Show("Added/Updated");
+                intializingItemField();
             }
 
 
@@ -310,7 +343,7 @@ namespace TrackKingAudio
 
 
                 int count = 1;
-                for (int i = startIndex; i <= endIndex; i++)
+                for (int i = startIndex; i <endIndex; i++)
                 {
                     if (i < Tracks.Count)
                     {
@@ -323,6 +356,17 @@ namespace TrackKingAudio
                     
                 }
             }
+        }
+        /// <summary>
+        /// This method will set the default value to track setup controls
+        /// </summary>
+        public void intializingItemField()
+        {
+            txtName.Text = "Track Name";
+            txtCatagory.Text = "Category";
+            txtBrand.Text = "Brand";
+            txtProduct.Text = "Product";
+            audiolocation = "";
         }
     }
 }
