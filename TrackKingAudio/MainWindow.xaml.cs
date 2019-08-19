@@ -546,5 +546,13 @@ namespace TrackKingAudio
                 System.Windows.Forms.MessageBox.Show("No more tracks to show");
             }
         }
+        /// <summary>
+        /// This method will take trackXML and reset the ids
+        /// </summary>
+        /// <param name="xml"></param>
+        public void idRefreshTrackXml(XmlDocument xml)
+        {
+            //Need to implement this
+        }
     }
 }

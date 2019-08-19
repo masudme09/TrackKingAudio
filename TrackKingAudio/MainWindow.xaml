@@ -121,7 +121,7 @@
 
         </Grid>
         <!-- Middle part for visualization for Tracks-->
-        <Grid Grid.Column="1" Name="middleContentGrid" Visibility="Visible">
+        <Grid Grid.Column="1" Name="middleContentGrid" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height=".20*"/>
                 <RowDefinition Height="1*"/>
